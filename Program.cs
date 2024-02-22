@@ -1,4 +1,4 @@
-﻿#define FILE
+﻿#define CONSOLE
 #define CONNECTIVITY_CONDITION
 
 using System;
@@ -37,6 +37,12 @@ namespace Eurodiffusion
                 for (int caseNumber = 1; countries != null; caseNumber++)
                 {
                     // Создание объектов Linker и Diffuser на основе полученных стран
+                    var validator = new Validator(countries);
+
+                    // Проверяем корректность данных
+                    if (!validator.Validate())
+                        throw new InvalidDataException("Страны пересекаются в один и тех же городах");
+
                     var linker = new Linker(countries);
                     var diffuser = new Diffuser(countries);
 
@@ -70,7 +76,7 @@ namespace Eurodiffusion
                 // Строим результирующую строку и записываем ее в поток вывода
                 writer.WriteLine(Output.ToString());
             }
-            // В случае, когда граф не является связным
+            // В случае, когда граф не является связным или страны пересекаются в один и тех же городах
             catch (InvalidDataException ex)
             {
                 Console.WriteLine(ex.Message);
