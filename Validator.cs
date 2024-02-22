@@ -33,8 +33,8 @@ namespace Eurodiffusion
 
         private bool isIntersect((int X, int Y, int Width, int Height) rect0, (int X, int Y, int Width, int Height) rect1) 
         {
-            var overlapByX = IsValueBetween(rect0.X, rect1.X, rect1.X + rect1.Width) || IsValueBetween(rect1.X, rect0.X, rect0.X + rect0.Width);
-            var overlapByY = IsValueBetween(rect0.Y, rect1.Y, rect1.Y + rect1.Height) || IsValueBetween(rect1.Y, rect0.Y, rect0.Y + rect0.Height);
+            var overlapByX = IsValueBetween(rect0.X, rect1.X, rect1.X + rect1.Width - 1) || IsValueBetween(rect1.X, rect0.X, rect0.X + rect0.Width - 1);
+            var overlapByY = IsValueBetween(rect0.Y, rect1.Y, rect1.Y + rect1.Height - 1) || IsValueBetween(rect1.Y, rect0.Y, rect0.Y + rect0.Height - 1);
             return overlapByX && overlapByY;
         }
 

@@ -1,4 +1,4 @@
-﻿#define CONSOLE
+﻿#define FILE
 #define CONNECTIVITY_CONDITION
 
 using System;
