@@ -1,4 +1,4 @@
-﻿#define FILE
+﻿#define CONSOLE
 #define CONNECTIVITY_CONDITION
 
 using System;
@@ -36,13 +36,14 @@ namespace Eurodiffusion
                 // Пока массив не null рассматриваем текущий случай
                 for (int caseNumber = 1; countries != null; caseNumber++)
                 {
-                    // Создание объектов Linker и Diffuser на основе полученных стран
+                    //Создание объекта Validator на основе полученных стран
                     var validator = new Validator(countries);
 
                     // Проверяем корректность данных
                     if (!validator.Validate())
-                        throw new InvalidDataException("Страны пересекаются в один и тех же городах");
+                        throw new InvalidDataException("Страны пересекаются в одних и тех же городах");
 
+                    // Создание объектов Linker и Diffuser на основе полученных стран
                     var linker = new Linker(countries);
                     var diffuser = new Diffuser(countries);
 
